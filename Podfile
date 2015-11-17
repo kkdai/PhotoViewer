@@ -1,5 +1,5 @@
 platform :ios, '8.0'
 
-xcodeproj 'ck101'
+xcodeproj 'ck101Viewer'
 
-pod 'DKImageBrowser'
+pod 'QBImagePickerController'

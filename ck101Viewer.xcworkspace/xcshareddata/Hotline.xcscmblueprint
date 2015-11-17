@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3EE4277B20F76D1B2115AFE973AC25DC058F85AD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3EE4277B20F76D1B2115AFE973AC25DC058F85AD" : 0,
+    "2AF2A4974FF728C641B106368BF9FB0D457E643B" : 0,
+    "638CC66371CDAD438F4CB5B66D1A15EBD153918B" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "12975629-B125-478C-B82D-1504088B6BF8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3EE4277B20F76D1B2115AFE973AC25DC058F85AD" : "hotline\/",
+    "2AF2A4974FF728C641B106368BF9FB0D457E643B" : "ccs\/",
+    "638CC66371CDAD438F4CB5B66D1A15EBD153918B" : "HotLine\/Source\/CCS_FrameworkAPI\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Hotline",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Source\/iOS\/Hotline\/Hotline.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "atcgit.chicony.com.tw:sw1\/ccs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2AF2A4974FF728C641B106368BF9FB0D457E643B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/atcgit.chicony.com.tw\/sw1\/hotline.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3EE4277B20F76D1B2115AFE973AC25DC058F85AD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/atcgit.chicony.com.tw\/sw1\/CCS_FrameworkAPI.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "638CC66371CDAD438F4CB5B66D1A15EBD153918B"
+    }
+  ]
+}
