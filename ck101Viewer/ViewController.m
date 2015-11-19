@@ -5,6 +5,7 @@
 
 #import "ViewController.h"
 #import "QBImagePickerController.h"
+#import "IDMPhotoBrowser.h"
 
 #define ROW_Height 80
 
@@ -103,8 +104,6 @@ void LogString(char* str){
                 
                 fileStatusIndex=0;
                 
-//                m_helper->SendFile(0, inputFile, &token);
-//                _TokenString = [NSString stringWithUTF8String:token.c_str()];
                 NSLog(@"token:%@", _TokenString);
                 _TokenInput.text = _TokenString;
                 
@@ -182,7 +181,6 @@ void LogString(char* str){
                      
                      fileStatusIndex=0;
                      
-//                     m_helper->SendFile(0, inputFile, &token);
 //                     _TokenString = [NSString stringWithUTF8String:token.c_str()];
                      NSLog(@"token:%@", _TokenString);
                      _TokenInput.text = _TokenString;
@@ -255,13 +253,6 @@ void LogString(char* str){
 - (IBAction)btnReceivePress:(id)sender {
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     _TokenString = [NSString stringWithString:_TokenInput.text];
-//    if(!m_helper->ReceiveFile(std::string([_TokenString UTF8String]), std::string([DocumentPath UTF8String])))
-//    {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalide token." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//        
-//        [alert show];
-//
-//    }
     currentViewController.progressView.progress = 0;
 }
 
@@ -523,9 +514,30 @@ void LogString(char* str){
     if ( isFolder) {
         BrowserPath = filePath;
         [self refreshPath];
+    } else {
+        //If touch file start image browser
+        [self launchImageBrowser];
     }
 }
 
+-(void)launchImageBrowser {
+    NSArray *DirList=[[NSFileManager defaultManager] contentsOfDirectoryAtPath:BrowserPath error:nil];
+    NSMutableArray *photos = [NSMutableArray new];
+    
+    for(NSString *file in DirList)
+    {
+        NSString *path = [self pathForFile:file];
+        if(![self fileIsDirectory:file])
+        {
+            NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:path];
+            IDMPhoto *photo = [IDMPhoto photoWithURL:fileURL];
+            [photos addObject:photo];
+        }
+        
+    }
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos];
+    [self presentViewController:browser animated:YES completion:nil];
+}
 -(void)singleTap:(UISwipeGestureRecognizer*)tap
 {
     if (UIGestureRecognizerStateEnded == tap.state)

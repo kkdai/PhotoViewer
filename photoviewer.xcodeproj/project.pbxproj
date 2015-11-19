@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		20386B9A1BBBDD6700E2FB0A /* ck101Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ck101Viewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20386B9A1BBBDD6700E2FB0A /* photoviewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoviewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20386B9E1BBBDD6700E2FB0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20386BA01BBBDD6700E2FB0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		20386BA11BBBDD6700E2FB0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -32,7 +32,7 @@
 		20386BAE1BBBDD6700E2FB0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20D2FB8F1BFAE71E00505772 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		20D2FBB01BFB100F00505772 /* webdl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = webdl.framework; sourceTree = "<group>"; };
-		20EF866A1BBD36F10006D848 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = ../../../../../../../../../../usr/lib/libz.dylib; sourceTree = "<group>"; };
+		20EF866A1BBD36F10006D848 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
 		8E9423784D1D10DD5434F879 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F14AF1461AD6D85CA59A14 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B575373BAC24F23512685A54 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +55,8 @@
 		11E8F9B78AE30D8267F2CA44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20D2FBB01BFB100F00505772 /* webdl.framework */,
+				20EF866A1BBD36F10006D848 /* libz.dylib */,
 				8E9423784D1D10DD5434F879 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -63,10 +65,8 @@
 		20386B911BBBDD6700E2FB0A = {
 			isa = PBXGroup;
 			children = (
-				20D2FBB01BFB100F00505772 /* webdl.framework */,
 				11E8F9B78AE30D8267F2CA44 /* Frameworks */,
-				20386B9C1BBBDD6700E2FB0A /* ck101viewer */,
-				20EF866A1BBD36F10006D848 /* libz.dylib */,
+				20386B9C1BBBDD6700E2FB0A /* photoviewer */,
 				D708BD49DC92BBFDDB22A3F3 /* Pods */,
 				20386B9B1BBBDD6700E2FB0A /* Products */,
 			);
@@ -75,12 +75,12 @@
 		20386B9B1BBBDD6700E2FB0A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				20386B9A1BBBDD6700E2FB0A /* ck101Viewer.app */,
+				20386B9A1BBBDD6700E2FB0A /* photoviewer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		20386B9C1BBBDD6700E2FB0A /* ck101viewer */ = {
+		20386B9C1BBBDD6700E2FB0A /* photoviewer */ = {
 			isa = PBXGroup;
 			children = (
 				20386BA01BBBDD6700E2FB0A /* AppDelegate.h */,
@@ -93,6 +93,7 @@
 				20386BAE1BBBDD6700E2FB0A /* Info.plist */,
 				20386B9D1BBBDD6700E2FB0A /* Supporting Files */,
 			);
+			name = photoviewer;
 			path = ck101viewer;
 			sourceTree = "<group>";
 		};
@@ -117,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		20386B991BBBDD6700E2FB0A /* ck101Viewer */ = {
+		20386B991BBBDD6700E2FB0A /* photoviewer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 20386BC71BBBDD6700E2FB0A /* Build configuration list for PBXNativeTarget "ck101Viewer" */;
+			buildConfigurationList = 20386BC71BBBDD6700E2FB0A /* Build configuration list for PBXNativeTarget "photoviewer" */;
 			buildPhases = (
 				FBF423E954F69CCDB8E1F62E /* Check Pods Manifest.lock */,
 				20386B961BBBDD6700E2FB0A /* Sources */,
@@ -132,9 +133,9 @@
 			);
 			dependencies = (
 			);
-			name = ck101Viewer;
+			name = photoviewer;
 			productName = ck101Viewer;
-			productReference = 20386B9A1BBBDD6700E2FB0A /* ck101Viewer.app */;
+			productReference = 20386B9A1BBBDD6700E2FB0A /* photoviewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 20386B951BBBDD6700E2FB0A /* Build configuration list for PBXProject "ck101Viewer" */;
+			buildConfigurationList = 20386B951BBBDD6700E2FB0A /* Build configuration list for PBXProject "photoviewer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -169,7 +170,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				20386B991BBBDD6700E2FB0A /* ck101Viewer */,
+				20386B991BBBDD6700E2FB0A /* photoviewer */,
 			);
 		};
 /* End PBXProject section */
@@ -366,8 +367,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanlin.ck101viewer;
-				PRODUCT_NAME = ck101Viewer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanlin.photoviewer;
+				PRODUCT_NAME = photoviewer;
 			};
 			name = Debug;
 		};
@@ -386,15 +387,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanlin.ck101viewer;
-				PRODUCT_NAME = ck101Viewer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanlin.photoviewer;
+				PRODUCT_NAME = photoviewer;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		20386B951BBBDD6700E2FB0A /* Build configuration list for PBXProject "ck101Viewer" */ = {
+		20386B951BBBDD6700E2FB0A /* Build configuration list for PBXProject "photoviewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20386BC51BBBDD6700E2FB0A /* Debug */,
@@ -403,7 +404,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		20386BC71BBBDD6700E2FB0A /* Build configuration list for PBXNativeTarget "ck101Viewer" */ = {
+		20386BC71BBBDD6700E2FB0A /* Build configuration list for PBXNativeTarget "photoviewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20386BC81BBBDD6700E2FB0A /* Debug */,
