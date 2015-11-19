@@ -94,7 +94,7 @@
 				20386B9D1BBBDD6700E2FB0A /* Supporting Files */,
 			);
 			name = photoviewer;
-			path = ck101viewer;
+			path = photoviewer;
 			sourceTree = "<group>";
 		};
 		20386B9D1BBBDD6700E2FB0A /* Supporting Files */ = {
@@ -134,7 +134,7 @@
 			dependencies = (
 			);
 			name = photoviewer;
-			productName = ck101Viewer;
+			productName = photoviewer;
 			productReference = 20386B9A1BBBDD6700E2FB0A /* photoviewer.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -363,7 +363,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_INPUT_FILETYPE = automatic;
-				INFOPLIST_FILE = ck101Viewer/Info.plist;
+				INFOPLIST_FILE = photoviewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -383,7 +383,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_INPUT_FILETYPE = automatic;
-				INFOPLIST_FILE = ck101Viewer/Info.plist;
+				INFOPLIST_FILE = photoviewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
