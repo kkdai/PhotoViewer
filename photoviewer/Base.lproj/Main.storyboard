@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kUf-fN-4zs">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -9,7 +8,7 @@
         <!--DocBrowser-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="DocBrowser" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="DocBrowser" id="BYZ-38-t0r" customClass="PhotoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,27 +21,21 @@
                                 <rect key="frame" x="8" y="20" width="371" height="44"/>
                                 <animations/>
                                 <items>
+                                    <barButtonItem systemItem="rewind" id="ZRw-za-bcM">
+                                        <connections>
+                                            <action selector="btnParentFolderPress:" destination="BYZ-38-t0r" id="GZz-YC-lfZ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem enabled="NO" title="  " id="Phn-7R-xmD"/>
                                     <barButtonItem systemItem="refresh" id="HK9-gu-XDW">
                                         <connections>
                                             <action selector="btnRefreshPress:" destination="BYZ-38-t0r" id="glh-Ss-Isn"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem enabled="NO" title="  " id="Phn-7R-xmD"/>
-                                    <barButtonItem systemItem="rewind" id="ZRw-za-bcM">
+                                    <barButtonItem enabled="NO" title="  " id="XNk-tu-b45"/>
+                                    <barButtonItem systemItem="add" id="vHW-Hj-9sI">
                                         <connections>
-                                            <action selector="btnPreviewFolderPress:" destination="BYZ-38-t0r" id="a9Z-Lo-hw3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem enabled="NO" title="  " id="JgN-sc-YVI"/>
-                                    <barButtonItem systemItem="action" id="p6u-CO-nfd">
-                                        <connections>
-                                            <action selector="btnActionPress:" destination="BYZ-38-t0r" id="L6M-7I-2sw"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem enabled="NO" title="  " id="byU-yJ-AME"/>
-                                    <barButtonItem systemItem="trash" id="jzk-g1-EP2">
-                                        <connections>
-                                            <action selector="btnDeletePress:" destination="BYZ-38-t0r" id="pv1-9w-9Fo"/>
+                                            <action selector="btnAddPress:" destination="BYZ-38-t0r" id="0iT-6C-HQb"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

@@ -6,7 +6,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface PhotoViewController : UIViewController
 - (void) refreshPath;
 @end
 

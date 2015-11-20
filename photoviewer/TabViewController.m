@@ -7,7 +7,7 @@
 //
 
 #import "TabViewController.h"
-#import "ViewController.h"
+#import "PhotoViewController.h"
 #import "AppDelegate.h"
 
 @interface TabViewController ()<UITabBarControllerDelegate>
@@ -32,7 +32,7 @@
     if (tabBarController.selectedIndex == 0)
     {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        ViewController *photoView = (ViewController*)appDelegate.photoBrower;
+        PhotoViewController *photoView = (PhotoViewController*)appDelegate.photoBrower;
         [photoView refreshPath];
     }
     

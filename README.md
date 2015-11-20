@@ -1,6 +1,6 @@
 PhotoViewer 看圖小幫手
 ======================
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kkdai/PhotoViewer/master/LICENSE) [![Build Status](https://travis-ci.org/kkdai/PhotoViewer.svg)](https://travis-ci.org/kkdai/PhotoViewer)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kkdai/PhotoViewer/master/LICENSE)
 
 
 看圖小幫手，是一個實驗性質的App．主要是把[我愛批踢踢](https://github.com/kkdai/iloveptt)，[我愛卡提諾](https://github.com/kkdai/iloveck101)與[臉書相簿小幫手](https://github.com/kkdai/goFBPages) 整合進iOS的App，透過[Gomobile](https://godoc.org/golang.org/x/mobile/cmd/gomobile)

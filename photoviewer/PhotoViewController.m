@@ -3,7 +3,7 @@
 //
 
 
-#import "ViewController.h"
+#import "PhotoViewController.h"
 #import "QBImagePickerController.h"
 #import "IDMPhotoBrowser.h"
 #import "AppDelegate.h"
@@ -13,13 +13,13 @@
 unsigned long long totalSize=0;
 unsigned long long totalSendSize=0;
 int fileCount=0,fileIndex=0,fileStatusIndex=0;
-ViewController *currentViewController;
+PhotoViewController *currentViewController;
 
 void LogString(char* str){
     NSLog(@"%s", str);
 }
 
-@interface ViewController ()< UINavigationControllerDelegate, QBImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate, UIAlertViewDelegate>
+@interface PhotoViewController ()< UINavigationControllerDelegate, QBImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate, UIAlertViewDelegate>
 {
     NSString *DocumentPath;
     NSString *BrowserPath;
@@ -35,7 +35,7 @@ void LogString(char* str){
 @end
 
 
-@implementation ViewController
+@implementation PhotoViewController
 
 
 - (void)viewDidLoad {
@@ -53,20 +53,6 @@ void LogString(char* str){
 
     _filesView.rowHeight = ROW_Height;
     
-    deleteAlert = [[UIAlertView alloc] initWithTitle:@"Warring" message:@"" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-    cancelAlert = [[UIAlertView alloc] initWithTitle:@"Warring" message:@"Are you really cancle transfer?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];;
-    
-    
-    UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
-    doubleTap.numberOfTapsRequired = 2;
-    doubleTap.numberOfTouchesRequired = 1;
-    [_filesView addGestureRecognizer:doubleTap];
-    
-    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-    singleTap.numberOfTapsRequired = 1;
-    singleTap.numberOfTouchesRequired = 1;
-    [singleTap requireGestureRecognizerToFail:doubleTap];
-    [_filesView addGestureRecognizer:singleTap];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.photoBrower = (id)self;
@@ -89,7 +75,6 @@ void LogString(char* str){
 }
 
 - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
-    
     fileIndex = 0;
     fileCount=(int)assets.count;
     totalSize = 0;
@@ -111,62 +96,26 @@ void LogString(char* str){
                  NSString *fileName= [[fileURL absoluteString] lastPathComponent];
                  unsigned long long filesize = imageData.length;
                  totalSize += filesize;
-//                 targetFile = [TempPath stringByAppendingPathComponent:fileName];
+                 targetFile = [BrowserPath stringByAppendingPathComponent:fileName];
                  if([[NSFileManager defaultManager] fileExistsAtPath:targetFile])
                  {
-//                     NSString* templateStr = [NSString stringWithFormat:@"%@/XXXXX.%@", TempPath,[fileName pathExtension] ];
+                     NSString* templateStr = [NSString stringWithFormat:@"%@/XXXXX.%@", BrowserPath,[fileName pathExtension] ];
                      char buf[512];
-//                     strcpy(buf, [templateStr cStringUsingEncoding:NSASCIIStringEncoding]);
+                     strcpy(buf, [templateStr cStringUsingEncoding:NSASCIIStringEncoding]);
                      char* filename = mktemp(buf);
                      
                      targetFile = [NSString stringWithCString:filename encoding:NSASCIIStringEncoding];
                  }
                  [imageData writeToFile:targetFile atomically:NO];
                  NSLog(@"targetFile = %@ %qi %qi",info ,filesize ,totalSize);
-//                 std::string *tarFile = new std::string([targetFile UTF8String]);
-                 
-//                 inputFile.push_back(*tarFile);
-//                 delete tarFile;
-                 fileIndex++;
-                 if (fileIndex == fileCount) {
-                     //All selected files got.
-//                     string token;
-                     
-                     fileStatusIndex=0;
-                 }
              }
          }];
     }
     
     [self dismissViewControllerAnimated:YES completion:NULL];
+    [self refreshPath];
 }
 
-- (NSString *)pathToTempFolder:(NSString*) folderName {
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                        NSUserDomainMask,
-                                                                        YES) lastObject];
-    NSString *patientPhotoFolder = [documentsDirectory stringByAppendingPathComponent:folderName];
-    
-    // Create the folder if necessary
-    BOOL isDir = NO;
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    if (![fileManager fileExistsAtPath:patientPhotoFolder
-                           isDirectory:&isDir] && isDir == NO) {
-        [fileManager createDirectoryAtPath:patientPhotoFolder
-               withIntermediateDirectories:NO
-                                attributes:nil
-                                     error:nil];
-    }
-    return patientPhotoFolder;
-}
-
-- (void) removeTempSendFolder:(NSString*)tempFolderName {
-    NSString *patientPhotoFolder = [self pathToTempFolder:tempFolderName];
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:patientPhotoFolder error:nil];
-    for (NSString *filename in contents)  {
-        [[NSFileManager defaultManager] removeItemAtPath:[patientPhotoFolder stringByAppendingPathComponent:filename] error:NULL];
-    }
-}
 
 - (void) cleanupFilesInFolder:(NSString*) folder {
     // Path to the Documents directory
@@ -189,76 +138,24 @@ void LogString(char* str){
         }
 }
 
+- (IBAction)btnAddPress:(id)sender {
+    QBImagePickerController *imagePickerController = [QBImagePickerController new];
+    imagePickerController.delegate = self;
+    imagePickerController.allowsMultipleSelection = YES;
+    imagePickerController.maximumNumberOfSelection = 6;
+    imagePickerController.showsNumberOfSelectedAssets = YES;
+    [self presentViewController:imagePickerController animated:YES completion:NULL];
+}
+
 - (IBAction)btnCancelPress:(id)sender {
     [cancelAlert show];
 }
 
-- (IBAction)btnPreviewFolderPress:(id)sender {
+- (IBAction)btnParentFolderPress:(id)sender {
     if (![DocumentPath isEqualToString:BrowserPath]) {
         BrowserPath = [BrowserPath stringByDeletingLastPathComponent];
     }
     [self refreshPath];
-}
-
-- (IBAction)btnActionPress:(id)sender {
-    if(_filesView.indexPathsForSelectedRows.count>0)
-    {
-        NSMutableArray *actionfile=[[NSMutableArray alloc] init];
-        for(NSIndexPath *indexPath in _filesView.indexPathsForSelectedRows)
-        {
-            [actionfile addObject:[NSURL fileURLWithPath:[self pathForFile:files[indexPath.row]]]];
-        }
-        
-        UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:actionfile applicationActivities:nil];
-        if ( [avc respondsToSelector:@selector(popoverPresentationController)] ) {
-            // iOS8
-            avc.popoverPresentationController.sourceView = self.view;
-        }
-        [self presentViewController:avc animated:YES completion:nil];
-    }
-}
-
-
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    switch (buttonIndex) {
-        case 0:
-            NSLog(@"Cancel Button Pressed");
-            break;
-        case 1:
-            if(alertView == deleteAlert)
-            {
-                for(NSIndexPath *indexPath in _filesView.indexPathsForSelectedRows)
-                {
-                    NSError *error;
-                    NSString *path = [self pathForFile:files[indexPath.row]];
-                    if ([[NSFileManager defaultManager] isDeletableFileAtPath:path]) {
-                        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-                        if (!success) {
-                            NSLog(@"Error removing file at path: %@", error.localizedDescription);
-                        }
-                    }
-                }
-                [self refreshPath];
-            }
-            else if(alertView == cancelAlert)
-
-            {
-                
-            }
-        default:
-            break;
-    }
-    
-}
-
-- (IBAction)btnDeletePress:(id)sender {
-    if(_filesView.indexPathsForSelectedRows.count>0)
-    {
-        deleteAlert.message = [NSString stringWithFormat:@"Are you really delete %d file(s)?",(int)_filesView.indexPathsForSelectedRows.count];
-        [deleteAlert show];
-    }
-
 }
 
 - (UIImage *) resizeImage:(UIImage*) srcImg
@@ -359,28 +256,44 @@ void LogString(char* str){
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+-(NSString*) getFilepathByindexPath:(NSIndexPath *)indexPath {
+    NSString *filePath;
 
-/*
+    if (indexPath.row==0 && [files[indexPath.row] isEqualToString:@"../"])
+        filePath = [BrowserPath stringByDeletingLastPathComponent];
+    else
+        filePath = [self pathForFile:files[indexPath.row]];
+    return filePath;
+}
+
+
  // Override to support editing the table view.
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+         BOOL isFolder = NO;
+         NSString *filePath = [self getFilepathByindexPath:indexPath];
+         
+         [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isFolder];
+         if ( isFolder) {
+             [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+
+         } else {
+             //Remove file
+             NSError *error;
+             if ([[NSFileManager defaultManager] isDeletableFileAtPath:filePath]) {
+                 BOOL success = [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+                 if (!success) {
+                     NSLog(@"Error removing file at path: %@", error.localizedDescription);
+                 }
+             }
+         }
+         [self refreshPath];
+     }
+     else if (editingStyle == UITableViewCellEditingStyleInsert) {
+         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
  }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
 
 /*
  // Override to support rearranging the table view.
@@ -402,53 +315,9 @@ void LogString(char* str){
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    NSString *file = [files objectAtIndex:indexPath.row];
-    NSString *path = [self pathForFile:file];
-    //	BOOL matchesAppPattern = NO;
-    //	if ([file length] > 23) {
-    //		if ([file characterAtIndex:8] == 45 && [file characterAtIndex:13] == 45 && [file characterAtIndex:18] == 45 && [file characterAtIndex:23] == 45) {
-    //			matchesAppPattern = YES;
-    //		}
-    ////		unichar u = [file characterAtIndex:8];
-    ////		NSLog(@"%d", u);
-    //	}
-    //	// 8 13 18 23
-    // matching app pattern doesn't work, because the dir contents you cd into is always blank... must be the sandbox protection
-    if ([self fileIsDirectory:file]) {
-     //   DirectoryBrowserTableViewController *dbtvc = [self.storyboard instantiateViewControllerWithIdentifier:@"DirectoryBrowserTableViewController"];
-     //   dbtvc.path = path;
-     //   [self.navigationController pushViewController:dbtvc animated:YES];
-        	//} else {
-            //    [self performSegueWithIdentifier:@"EditTextFileSegue" sender:file];
-    } else {
-        NSURL *url = [NSURL fileURLWithPath:path];
-        
-        UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:nil];
-        if ( [avc respondsToSelector:@selector(popoverPresentationController)] ) {
-            // iOS8
-            avc.popoverPresentationController.sourceView = self.view;
-        }
-        [self presentViewController:avc animated:YES completion:nil];
-    }
-     */
-    /*
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-     */
     BOOL isFolder = NO;
     
-    NSString *filePath;
-
-    if (indexPath.row==0 && [files[indexPath.row] isEqualToString:@"../"])
-        filePath = [BrowserPath stringByDeletingLastPathComponent];
-    else
-        filePath = [self pathForFile:files[indexPath.row]];
+    NSString *filePath = [self getFilepathByindexPath:indexPath];
     [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isFolder];
     if ( isFolder) {
         BrowserPath = filePath;
@@ -476,37 +345,5 @@ void LogString(char* str){
     }
     IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos];
     [self presentViewController:browser animated:YES completion:nil];
-}
--(void)singleTap:(UISwipeGestureRecognizer*)tap
-{
-    if (UIGestureRecognizerStateEnded == tap.state)
-    {
-      //  CGPoint p = [tap locationInView:tap.view];
-      //  NSIndexPath* indexPath = [_filesView indexPathForRowAtPoint:p];
-      //  UITableViewCell* cell = [_filesView cellForRowAtIndexPath:indexPath];
-        // Do your stuff
-    }
-}
-
--(void)doubleTap:(UISwipeGestureRecognizer*)tap
-{
-    if (UIGestureRecognizerStateEnded == tap.state)
-    {
-        CGPoint p = [tap locationInView:tap.view];
-        NSIndexPath* indexPath = [_filesView indexPathForRowAtPoint:p];
-        [_filesView deselectRowAtIndexPath:indexPath animated:NO];
-            // Initialize Document Interaction Controller
-            documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:[self pathForFile:files[indexPath.row]]]];
-            
-            // Configure Document Interaction Controller
-            [documentInteractionController setDelegate:self];
-            
-            // Preview PDF
-            [documentInteractionController presentPreviewAnimated:YES];
-
-    }
-}
-- (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller {
-    return self;
 }
 @end
