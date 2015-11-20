@@ -7,6 +7,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+- (void) refreshPath;
 @end
 

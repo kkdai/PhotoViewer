@@ -5,6 +5,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,6 +16,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UITabBarController *_tabController = (UITabBarController*)_window.rootViewController;
+    _tabController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+
     return YES;
 }
 

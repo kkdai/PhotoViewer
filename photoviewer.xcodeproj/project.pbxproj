@@ -13,8 +13,10 @@
 		20386BA81BBBDD6700E2FB0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20386BA61BBBDD6700E2FB0A /* Main.storyboard */; };
 		20386BAA1BBBDD6700E2FB0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20386BA91BBBDD6700E2FB0A /* Assets.xcassets */; };
 		20386BAD1BBBDD6700E2FB0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20386BAB1BBBDD6700E2FB0A /* LaunchScreen.storyboard */; };
+		20413FBC1BFEA79100B432E6 /* PTTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20413FBB1BFEA79100B432E6 /* PTTViewController.m */; };
+		20413FBE1BFEAA7B00B432E6 /* photomgr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20413FBD1BFEAA7B00B432E6 /* photomgr.framework */; };
+		20413FC11BFEBF1F00B432E6 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20413FC01BFEBF1F00B432E6 /* TabViewController.m */; };
 		20D2FB901BFAE71E00505772 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D2FB8F1BFAE71E00505772 /* folder.png */; };
-		20D2FBB11BFB100F00505772 /* webdl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D2FBB01BFB100F00505772 /* webdl.framework */; };
 		20EF866B1BBD36F10006D848 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EF866A1BBD36F10006D848 /* libz.dylib */; };
 		EE30A5654D6CC639D9EA27EC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9423784D1D10DD5434F879 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -25,13 +27,17 @@
 		20386BA01BBBDD6700E2FB0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		20386BA11BBBDD6700E2FB0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		20386BA31BBBDD6700E2FB0A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		20386BA41BBBDD6700E2FB0A /* ViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = ViewController.m; sourceTree = "<group>"; };
+		20386BA41BBBDD6700E2FB0A /* ViewController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		20386BA71BBBDD6700E2FB0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20386BA91BBBDD6700E2FB0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20386BAC1BBBDD6700E2FB0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20386BAE1BBBDD6700E2FB0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20413FBA1BFEA79100B432E6 /* PTTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTViewController.h; sourceTree = "<group>"; };
+		20413FBB1BFEA79100B432E6 /* PTTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTViewController.m; sourceTree = "<group>"; };
+		20413FBD1BFEAA7B00B432E6 /* photomgr.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = photomgr.framework; sourceTree = "<group>"; };
+		20413FBF1BFEBF1F00B432E6 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
+		20413FC01BFEBF1F00B432E6 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		20D2FB8F1BFAE71E00505772 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
-		20D2FBB01BFB100F00505772 /* webdl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = webdl.framework; sourceTree = "<group>"; };
 		20EF866A1BBD36F10006D848 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
 		8E9423784D1D10DD5434F879 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F14AF1461AD6D85CA59A14 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -43,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20D2FBB11BFB100F00505772 /* webdl.framework in Frameworks */,
+				20413FBE1BFEAA7B00B432E6 /* photomgr.framework in Frameworks */,
 				20EF866B1BBD36F10006D848 /* libz.dylib in Frameworks */,
 				EE30A5654D6CC639D9EA27EC /* libPods.a in Frameworks */,
 			);
@@ -55,7 +61,7 @@
 		11E8F9B78AE30D8267F2CA44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				20D2FBB01BFB100F00505772 /* webdl.framework */,
+				20413FBD1BFEAA7B00B432E6 /* photomgr.framework */,
 				20EF866A1BBD36F10006D848 /* libz.dylib */,
 				8E9423784D1D10DD5434F879 /* libPods.a */,
 			);
@@ -85,6 +91,10 @@
 			children = (
 				20386BA01BBBDD6700E2FB0A /* AppDelegate.h */,
 				20386BA11BBBDD6700E2FB0A /* AppDelegate.m */,
+				20413FBF1BFEBF1F00B432E6 /* TabViewController.h */,
+				20413FC01BFEBF1F00B432E6 /* TabViewController.m */,
+				20413FBA1BFEA79100B432E6 /* PTTViewController.h */,
+				20413FBB1BFEA79100B432E6 /* PTTViewController.m */,
 				20386BA31BBBDD6700E2FB0A /* ViewController.h */,
 				20386BA41BBBDD6700E2FB0A /* ViewController.m */,
 				20386BA61BBBDD6700E2FB0A /* Main.storyboard */,
@@ -93,7 +103,6 @@
 				20386BAE1BBBDD6700E2FB0A /* Info.plist */,
 				20386B9D1BBBDD6700E2FB0A /* Supporting Files */,
 			);
-			name = photoviewer;
 			path = photoviewer;
 			sourceTree = "<group>";
 		};
@@ -243,8 +252,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				20386BA51BBBDD6700E2FB0A /* ViewController.m in Sources */,
+				20413FBC1BFEA79100B432E6 /* PTTViewController.m in Sources */,
 				20386BA21BBBDD6700E2FB0A /* AppDelegate.m in Sources */,
 				20386B9F1BBBDD6700E2FB0A /* main.m in Sources */,
+				20413FC11BFEBF1F00B432E6 /* TabViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

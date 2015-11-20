@@ -6,13 +6,13 @@
 #import "ViewController.h"
 #import "QBImagePickerController.h"
 #import "IDMPhotoBrowser.h"
+#import "AppDelegate.h"
 
 #define ROW_Height 80
 
 unsigned long long totalSize=0;
 unsigned long long totalSendSize=0;
 int fileCount=0,fileIndex=0,fileStatusIndex=0;
-unsigned long long *EachFileSize=NULL;
 ViewController *currentViewController;
 
 void LogString(char* str){
@@ -29,7 +29,6 @@ void LogString(char* str){
     UIAlertView *deleteAlert,*cancelAlert;
 }
 @property (nonatomic) float totalProgess;
-@property (nonatomic) NSString* TokenString;
 @property (strong, nonatomic) IBOutlet UITextField *TokenInput;
 @property (strong, nonatomic) IBOutlet UIProgressView* progressView;
 @property (strong, nonatomic) IBOutlet UITableView* filesView;
@@ -43,7 +42,6 @@ void LogString(char* str){
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     currentViewController = self;
-    EachFileSize = NULL;
     files = nil;
     fileIcons = nil;
 
@@ -71,6 +69,9 @@ void LogString(char* str){
     [singleTap requireGestureRecognizerToFail:doubleTap];
     [_filesView addGestureRecognizer:singleTap];
     
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.photoBrower = (id)self;
+
     [self refreshPath];
 }
 
@@ -79,51 +80,9 @@ void LogString(char* str){
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)btnSendPress:(id)sender {
-    //Cleanup first
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    currentViewController.progressView.progress = 0;
-    if(_filesView.indexPathsForSelectedRows.count>0)
-    {
-        fileIndex = 0;
-        fileCount=(int)_filesView.indexPathsForSelectedRows.count;
-        totalSize = 0;
-        totalSendSize = 0;
-//        inputFile.clear();
-        if(EachFileSize)
-            delete EachFileSize;
-        EachFileSize = new unsigned long long [fileCount];
-        for(NSIndexPath *indexPath in _filesView.indexPathsForSelectedRows) {
-//            std::string *tarFile = new std::string([[self pathForFile:files[indexPath.row]] UTF8String]);
-//            inputFile.push_back(*tarFile);
-//            delete tarFile;
-            fileIndex++;
-            if (fileIndex == fileCount) {
-                //All selected files got.
-//                string token;
-                
-                fileStatusIndex=0;
-                
-                NSLog(@"token:%@", _TokenString);
-                _TokenInput.text = _TokenString;
-                
-            }
-        }
-    
-    }
-    else
-    {
-        [self cleanupFilesInDocumentTemp];
-        QBImagePickerController *imagePickerController = [QBImagePickerController new];
-        imagePickerController.delegate = self;
-        imagePickerController.allowsMultipleSelection = YES;
-        imagePickerController.maximumNumberOfSelection = 6;
-        imagePickerController.showsNumberOfSelectedAssets = YES;
-        
-        [self presentViewController:imagePickerController animated:YES completion:NULL];
-    }
+- (IBAction)btnRefreshPress:(id)sender {
+    [self refreshPath];
 }
-
 
 //When user press cancel in image select view
 - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController {
@@ -136,10 +95,6 @@ void LogString(char* str){
     fileCount=(int)assets.count;
     totalSize = 0;
     totalSendSize = 0;
-//    inputFile.clear();
-    if(EachFileSize)
-        delete EachFileSize;
-    EachFileSize = new unsigned long long [fileCount];
     for (PHAsset *asset in assets) {
         
         
@@ -156,7 +111,6 @@ void LogString(char* str){
                  NSURL* fileURL=[info objectForKey:@"PHImageFileURLKey"];
                  NSString *fileName= [[fileURL absoluteString] lastPathComponent];
                  unsigned long long filesize = imageData.length;
-                 EachFileSize[fileIndex]=filesize;
                  totalSize += filesize;
                  targetFile = [TempPath stringByAppendingPathComponent:fileName];
                  if([[NSFileManager defaultManager] fileExistsAtPath:targetFile])
@@ -180,11 +134,6 @@ void LogString(char* str){
 //                     string token;
                      
                      fileStatusIndex=0;
-                     
-//                     _TokenString = [NSString stringWithUTF8String:token.c_str()];
-                     NSLog(@"token:%@", _TokenString);
-                     _TokenInput.text = _TokenString;
-                     
                  }
              }
          }];
@@ -250,10 +199,11 @@ void LogString(char* str){
     [cancelAlert show];
 }
 
-- (IBAction)btnReceivePress:(id)sender {
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    _TokenString = [NSString stringWithString:_TokenInput.text];
-    currentViewController.progressView.progress = 0;
+- (IBAction)btnPreviewFolderPress:(id)sender {
+    if (![DocumentPath isEqualToString:BrowserPath]) {
+        BrowserPath = [BrowserPath stringByDeletingLastPathComponent];
+    }
+    [self refreshPath];
 }
 
 - (IBAction)btnActionPress:(id)sender {
@@ -407,13 +357,8 @@ void LogString(char* str){
     }
     
     NSString *file = [files objectAtIndex:indexPath.row];
-    //NSString *path = [self pathForFile:file];
-    //BOOL isdir = [self fileIsDirectory:file];
     
     cell.textLabel.text = file;
-    //cell.textLabel.textColor = isdir ? [UIColor blueColor] : [UIColor darkTextColor];
-    //cell.accessoryType = isdir ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-
 
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.imageView.image = [fileIcons objectAtIndex:indexPath.row];
