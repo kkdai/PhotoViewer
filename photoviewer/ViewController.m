@@ -21,7 +21,7 @@ void LogString(char* str){
 
 @interface ViewController ()< UINavigationControllerDelegate, QBImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate, UIAlertViewDelegate>
 {
-    NSString *DocumentPath, *TempPath;
+    NSString *DocumentPath;
     NSString *BrowserPath;
     NSMutableArray *files, *fileIcons;
     int nDirectorys;
@@ -48,8 +48,7 @@ void LogString(char* str){
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     // Print out the path to verify we are in the right place
     DocumentPath = [paths objectAtIndex:0];
-    TempPath = [self pathToTempFolder:@"temp"];
-    NSLog(@"Directory: %@ %@", DocumentPath,TempPath);
+    NSLog(@"Directory: %@", DocumentPath);
     BrowserPath = [NSString stringWithString:DocumentPath];
 
     _filesView.rowHeight = ROW_Height;
@@ -112,12 +111,12 @@ void LogString(char* str){
                  NSString *fileName= [[fileURL absoluteString] lastPathComponent];
                  unsigned long long filesize = imageData.length;
                  totalSize += filesize;
-                 targetFile = [TempPath stringByAppendingPathComponent:fileName];
+//                 targetFile = [TempPath stringByAppendingPathComponent:fileName];
                  if([[NSFileManager defaultManager] fileExistsAtPath:targetFile])
                  {
-                     NSString* templateStr = [NSString stringWithFormat:@"%@/XXXXX.%@", TempPath,[fileName pathExtension] ];
+//                     NSString* templateStr = [NSString stringWithFormat:@"%@/XXXXX.%@", TempPath,[fileName pathExtension] ];
                      char buf[512];
-                     strcpy(buf, [templateStr cStringUsingEncoding:NSASCIIStringEncoding]);
+//                     strcpy(buf, [templateStr cStringUsingEncoding:NSASCIIStringEncoding]);
                      char* filename = mktemp(buf);
                      
                      targetFile = [NSString stringWithCString:filename encoding:NSASCIIStringEncoding];
@@ -169,19 +168,16 @@ void LogString(char* str){
     }
 }
 
-- (void) cleanupFilesInDocumentTemp {
+- (void) cleanupFilesInFolder:(NSString*) folder {
     // Path to the Documents directory
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    if ([paths count] > 0)
-    {
         NSError *error = nil;
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
         
         // For each file in the directory, create full path and delete the file
-        for (NSString *file in [fileManager contentsOfDirectoryAtPath:TempPath error:&error])
+        for (NSString *file in [fileManager contentsOfDirectoryAtPath:folder error:&error])
         {
-            NSString *filePath = [TempPath stringByAppendingPathComponent:file];
+            NSString *filePath = [folder stringByAppendingPathComponent:file];
             NSLog(@"File : %@ ready for delete", filePath);
             
             BOOL fileDeleted = [fileManager removeItemAtPath:filePath error:&error];
@@ -191,8 +187,6 @@ void LogString(char* str){
                 // Deal with the error...
             }
         }
-        
-    }
 }
 
 - (IBAction)btnCancelPress:(id)sender {
