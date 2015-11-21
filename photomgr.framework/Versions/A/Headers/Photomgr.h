@@ -12,18 +12,18 @@
 
 @interface GoPhotomgrPTT : NSObject {
 }
-@property(strong, readonly) id ref;
+@property(strong, readonly) id _ref;
 
 - (id)initWithRef:(id)ref;
-- (NSString*)BaseDir;
+- (NSString*)baseDir;
 - (void)setBaseDir:(NSString*)v;
-- (void)Crawler:(NSString*)target workerNum:(int)workerNum;
-- (int)GetCurrentPageResultCount;
-- (int)GetPostStarByIndex:(int)postIndex;
-- (NSString*)GetPostTitleByIndex:(int)postIndex;
-- (NSString*)GetPostUrlByIndex:(int)postIndex;
-- (BOOL)HasValidURL:(NSString*)url;
-- (int)ParsePttPageByIndex:(int)page;
+- (void)crawler:(NSString*)target workerNum:(int)workerNum;
+- (int)getCurrentPageResultCount;
+- (int)getPostStarByIndex:(int)postIndex;
+- (NSString*)getPostTitleByIndex:(int)postIndex;
+- (NSString*)getPostUrlByIndex:(int)postIndex;
+- (BOOL)hasValidURL:(NSString*)url;
+- (int)parsePttPageByIndex:(int)page;
 @end
 
 FOUNDATION_EXPORT GoPhotomgrPTT* GoPhotomgrNewPTT();

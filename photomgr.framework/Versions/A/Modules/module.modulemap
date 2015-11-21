@@ -1,0 +1,4 @@
+framework module "Photomgr" {
+    header "Photomgr.h"
+    export *
+}

@@ -41,12 +41,12 @@ GoPhotomgrPTT *ptt;
 
     ptt = GoPhotomgrNewPTT();
     [ptt setBaseDir:[paths objectAtIndex:0]];
-    currentPagePostCount= [ptt ParsePttPageByIndex:currentPageNumber];
+    currentPagePostCount= [ptt parsePttPageByIndex:currentPageNumber];
 }
 
 - (void)showNextPage:(id)sender {
     currentPageNumber = currentPageNumber+1;
-    currentPagePostCount= [ptt ParsePttPageByIndex:currentPageNumber];
+    currentPagePostCount= [ptt parsePttPageByIndex:currentPageNumber];
     [self.tableView reloadData];
 }
 
@@ -54,7 +54,7 @@ GoPhotomgrPTT *ptt;
     if (currentPageNumber >=0)
         currentPageNumber = currentPageNumber-1;
     
-    currentPagePostCount= [ptt ParsePttPageByIndex:currentPageNumber];    
+    currentPagePostCount= [ptt parsePttPageByIndex:currentPageNumber];
     [self.tableView reloadData];
 }
 
@@ -78,8 +78,8 @@ GoPhotomgrPTT *ptt;
     
     //Configure the cell...
     int index= (int)indexPath.row;
-    int starCount = [ptt GetPostStarByIndex:index];
-    NSString * title = [ptt GetPostTitleByIndex:index];
+    int starCount = [ptt getPostStarByIndex:index];
+    NSString * title = [ptt getPostTitleByIndex:index];
     NSString *cellString = [[NSString alloc]initWithFormat:@"[%d]%@", starCount, title];
     cell.textLabel.text = cellString;
     return cell;
@@ -88,10 +88,10 @@ GoPhotomgrPTT *ptt;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int index= (int)indexPath.row;
-    NSString *parseURL = [ptt GetPostUrlByIndex:index];
+    NSString *parseURL = [ptt getPostUrlByIndex:index];
     
     [self.view makeToast:@"Start downloading ..."];
-    [ptt Crawler:parseURL workerNum:10];
+    [ptt crawler:parseURL workerNum:10];
     
 }
 /*
