@@ -8,7 +8,24 @@
 
 #include <Foundation/Foundation.h>
 
+@class GoPhotomgrCK101;
 @class GoPhotomgrPTT;
+
+@interface GoPhotomgrCK101 : NSObject {
+}
+@property(strong, readonly) id _ref;
+
+- (id)initWithRef:(id)ref;
+- (NSString*)baseDir;
+- (void)setBaseDir:(NSString*)v;
+- (void)crawler:(NSString*)target workerNum:(int)workerNum;
+- (int)getCurrentPageResultCount;
+- (int)getPostStarByIndex:(int)postIndex;
+- (NSString*)getPostTitleByIndex:(int)postIndex;
+- (NSString*)getPostUrlByIndex:(int)postIndex;
+- (BOOL)hasValidURL:(NSString*)url;
+- (int)parseCK101PageByIndex:(int)page;
+@end
 
 @interface GoPhotomgrPTT : NSObject {
 }
@@ -25,6 +42,8 @@
 - (BOOL)hasValidURL:(NSString*)url;
 - (int)parsePttPageByIndex:(int)page;
 @end
+
+FOUNDATION_EXPORT GoPhotomgrCK101* GoPhotomgrNewCK101();
 
 FOUNDATION_EXPORT GoPhotomgrPTT* GoPhotomgrNewPTT();
 

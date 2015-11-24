@@ -12,12 +12,14 @@
 #import "MBProgressHUD.h"
 
 @interface PTTViewController ()
+{
+    int currentPageNumber;
+    int currentPagePostCount;
+    GoPhotomgrPTT *ptt;
 
+}
 @end
 
-int currentPageNumber = 0;
-int currentPagePostCount = 0;
-GoPhotomgrPTT *ptt;
 
 @implementation PTTViewController
 
@@ -40,6 +42,8 @@ GoPhotomgrPTT *ptt;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
     ptt = GoPhotomgrNewPTT();
+    currentPageNumber = 0;
+    currentPagePostCount = 0;
     [ptt setBaseDir:[paths objectAtIndex:0]];
     currentPagePostCount= [ptt parsePttPageByIndex:currentPageNumber];
 }
