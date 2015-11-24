@@ -208,11 +208,11 @@
             </objects>
             <point key="canvasLocation" x="992" y="2015"/>
         </scene>
-        <!--Item-->
+        <!--CK101-->
         <scene sceneID="z2G-aw-Xly">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dMF-T0-6ik" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="XnZ-AR-I96"/>
+                    <tabBarItem key="tabBarItem" title="CK101" id="XnZ-AR-I96"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="71k-DF-1Xr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
