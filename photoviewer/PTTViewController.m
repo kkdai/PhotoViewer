@@ -92,11 +92,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int index= (int)indexPath.row;
-    NSString *parseURL = [ptt getPostUrlByIndex:index];
+    __block NSString *parseURL = [ptt getPostUrlByIndex:index];
     
     [self.view makeToast:@"Start downloading ..."];
-    [ptt crawler:parseURL workerNum:10];
-    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [ptt crawler:parseURL workerNum:10];
+        
+    });
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.text = [[NSString alloc] initWithFormat:@"*%@", cell.textLabel.text];
 }
 /*
 // Override to support conditional editing of the table view.
