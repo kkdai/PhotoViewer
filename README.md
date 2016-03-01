@@ -8,6 +8,15 @@ PhotoViewer 看圖小幫手
 主要的核心模組為[PhotoMgr](https://github.com/kkdai/photomgr) 是由Go撰寫的．其他相關的功能也都會寫在核心模組上．
 
 
+如何編譯
+---------------
+
+- Clone this project `git clone https://github.com/kkdai/PhotoViewer.git`
+- move to project folder `cd PhotoViewer`
+- Install related pods `pod install`
+- Build and Run it.
+
+
 主要功能
 --------------
 
