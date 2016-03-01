@@ -7,7 +7,7 @@
 //
 
 #import "CK101ViewController.h"
-#import "photomgr/Photomgr.h"
+#import "Photomgr/Photomgr.h"
 #import "UIView+Toast.h"
 #import "MBProgressHUD.h"
 

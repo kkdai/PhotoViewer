@@ -9,6 +9,7 @@
 #include <Foundation/Foundation.h>
 
 @class GoPhotomgrCK101;
+@class GoPhotomgrFBAlbum;
 @class GoPhotomgrPTT;
 
 @interface GoPhotomgrCK101 : NSObject {
@@ -25,6 +26,22 @@
 - (NSString*)getPostUrlByIndex:(int)postIndex;
 - (BOOL)hasValidURL:(NSString*)url;
 - (int)parseCK101PageByIndex:(int)page;
+@end
+
+@interface GoPhotomgrFBAlbum : NSObject {
+}
+@property(strong, readonly) id _ref;
+
+- (id)initWithRef:(id)ref;
+- (NSString*)baseDir;
+- (void)setBaseDir:(NSString*)v;
+- (void)crawler:(NSString*)target workerNum:(int)workerNum;
+- (int)getCurrentPageResultCount;
+- (int)getPostStarByIndex:(int)postIndex;
+- (NSString*)getPostTitleByIndex:(int)postIndex;
+- (NSString*)getPostUrlByIndex:(int)postIndex;
+- (BOOL)hasValidURL:(NSString*)url;
+- (int)parseFBAlbumPageByIndex:(int)page;
 @end
 
 @interface GoPhotomgrPTT : NSObject {
@@ -44,6 +61,8 @@
 @end
 
 FOUNDATION_EXPORT GoPhotomgrCK101* GoPhotomgrNewCK101();
+
+FOUNDATION_EXPORT GoPhotomgrFBAlbum* GoPhotomgrNewFBAlbum();
 
 FOUNDATION_EXPORT GoPhotomgrPTT* GoPhotomgrNewPTT();
 
