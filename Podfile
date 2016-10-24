@@ -1,8 +1,9 @@
 platform :ios, '8.0'
+use_frameworks!
 
-xcodeproj 'photoviewer'
-
-pod 'QBImagePickerController'
-pod 'IDMPhotoBrowser'
-pod 'Toast', '~> 3.0'
-pod 'MBProgressHUD'
+target 'photoviewer' do
+  pod 'QBImagePickerController'
+  pod 'IDMPhotoBrowser'
+  pod 'Toast', '~> 3.0'
+  pod 'MBProgressHUD'
+end

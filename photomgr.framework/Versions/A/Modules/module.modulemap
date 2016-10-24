@@ -1,4 +1,8 @@
 framework module "Photomgr" {
+	header "ref.h"
+    header "GoPhotomgr.h"
+    header "GoUniverse.h"
     header "Photomgr.h"
+
     export *
 }
