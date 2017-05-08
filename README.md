@@ -31,18 +31,19 @@ PhotoViewer 看圖小幫手
 --------------
 
 
-####瀏覽與管理相片的介面
+### 瀏覽與管理相片的介面
 
 ![](images/viewer.png)
 
 
-####瀏覽Ptt 與下載的介面
+### 瀏覽Ptt 與下載的介面
 
 ![](images/ptt.png)
 
 
 
-####瀏覽CK101 與下載的介面
+### 瀏覽CK101 與下載的介面
+
 ![](images/ck101.png)
 
 
@@ -61,7 +62,6 @@ PhotoViewer 看圖小幫手
 
 如果你喜歡這個App，請考慮以下方式贊助我
 
-- 請花30塊買小弟的[粉絲相簿](https://itunes.apple.com/tw/app/fen-si-xiang-bu/id839324997?l=zh&mt=8) App．
 - 按下一個"github Star"
 
 感謝...
